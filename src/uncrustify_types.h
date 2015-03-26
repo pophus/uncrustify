@@ -278,6 +278,7 @@ struct chunk_t
    UINT32       orig_col;
    UINT32       orig_col_end;
    UINT32       orig_prev_sp;     /* whitespace before this token */
+   UINT32       blank_line_sp;    /* whitespace on blank lines */
    UINT64       flags;            /* see PCF_xxx */
    int          column;           /* column of chunk */
    int          column_indent;    /* if 1st on a line, set to the 'indent'

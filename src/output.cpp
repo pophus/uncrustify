@@ -318,6 +318,16 @@ void output_text(FILE *pfile)
          for (cnt = 0; cnt < pc->nl_count; cnt++)
          {
             add_char('\n');
+             
+             // If there are two or more newlines in this chunk, add spaces to the
+             // blank lines if required. blank_line_sp holds the largest number of
+             // spaces that was found on an otherwise blank line; all blank lines
+             // will be indented to that value.
+             if(cnt < pc->nl_count - 1)
+             {
+                 // Use +1 to space up to and including the blank_line_sp.
+                 output_to_column(pc->blank_line_sp + 1, false);
+             }
          }
          cpd.did_newline = 1;
          cpd.column      = 1;
@@ -462,7 +472,7 @@ void output_text(FILE *pfile)
          output_to_column(pc->column, allow_tabs);
          add_text(pc->str);
          cpd.did_newline       = chunk_is_newline(pc);
-         cpd.output_trailspace = false;
+         cpd.output_trailspace = true;
       }
    }
 }

@@ -1100,6 +1100,7 @@ static bool parse_whitespace(tok_ctx& ctx, chunk_t& pc)
 {
    int nl_count = 0;
    int ch       = -2;
+   int max_sp   = 0;
 
    /* REVISIT: use a better whitespace detector? */
    while (ctx.more() && unc_isspace(ctx.peek()))
@@ -1125,6 +1126,15 @@ static bool parse_whitespace(tok_ctx& ctx, chunk_t& pc)
       case '\n':
          /* LF ending */
          cpd.le_counts[LE_LF]++;
+              
+         if (nl_count > 0)
+         {
+             if (pc.orig_prev_sp > max_sp)
+             {
+                 max_sp = pc.orig_prev_sp;
+             }
+         }
+             
          nl_count++;
          pc.orig_prev_sp = 0;
          break;
@@ -1148,6 +1158,7 @@ static bool parse_whitespace(tok_ctx& ctx, chunk_t& pc)
       pc.nl_count  = nl_count;
       pc.type      = nl_count ? CT_NEWLINE : CT_WHITESPACE;
       pc.after_tab = (ctx.c.last_ch == '\t');
+      pc.blank_line_sp = max_sp;
       return(true);
    }
    return(false);
