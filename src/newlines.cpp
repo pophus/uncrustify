@@ -1328,6 +1328,15 @@ static void newlines_brace_pair(chunk_t *br_open)
    {
       newline_def_blk(br_open, false);
    }
+    
+    if (br_open->parent_type == CT_OC_CLASS)
+    {
+        chunk_t *prev = chunk_get_prev(pc);
+        if(prev && prev->type != CT_NEWLINE)
+        {
+            newline_add_between(prev, br_open);
+        }
+    }
 
    /* Grab the matching brace close */
    chunk_t *br_close;
