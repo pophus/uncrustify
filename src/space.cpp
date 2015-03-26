@@ -1044,11 +1044,16 @@ static argval_t do_space(chunk_t *first, chunk_t *second, int& min_sp, bool comp
       }
 
       /* Arith after a cast comes first */
-      if ((second->type == CT_ARITH) || (second->type == CT_CARET))
+      if (second->type == CT_ARITH)
       {
          log_rule("sp_arith");
          return(cpd.settings[UO_sp_arith].a);
       }
+       
+       if (second->type == CT_CARET)
+       {
+           return(AV_IGNORE);
+       }
 
       /* "(struct foo) {...}" vs "(struct foo){...}" */
       if (second->type == CT_BRACE_OPEN)
@@ -1241,12 +1246,17 @@ static argval_t do_space(chunk_t *first, chunk_t *second, int& min_sp, bool comp
       return(AV_ADD);
    }
 
-   if ((first->type == CT_ARITH) || (first->type == CT_CARET) ||
-       (second->type == CT_ARITH) || (second->type == CT_CARET))
+   if ((first->type == CT_ARITH) || (second->type == CT_ARITH))
    {
       log_rule("sp_arith");
       return(cpd.settings[UO_sp_arith].a);
    }
+    
+    if (first->type == CT_CARET || second->type == CT_CARET)
+    {
+        return(AV_IGNORE);
+    }
+    
    if ((first->type == CT_BOOL) || (second->type == CT_BOOL))
    {
       arg = cpd.settings[UO_sp_bool].a;
