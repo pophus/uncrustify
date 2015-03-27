@@ -413,6 +413,11 @@ void do_symbol_check(chunk_t *prev, chunk_t *pc, chunk_t *next)
       {
          if (pc->type == CT_SQUARE_OPEN)
          {
+             if (pc->next && pc->next->type == CT_PAREN_OPEN)
+             {
+                 fix_casts(pc->next);
+             }
+             
             handle_oc_message_send(pc);
          }
          if (pc->type == CT_CARET)
@@ -5115,6 +5120,20 @@ static void handle_oc_message_send(chunk_t *os)
 
    if (tmp && ((tmp->type == CT_WORD) || (tmp->type == CT_TYPE)))
    {
+      /* If we haven't found the message class yet, this is probably it.
+         There could be e.g. a cast. */
+       if(tmp->prev->type != CT_OC_MSG_CLASS)
+       {
+           chunk_t *next = chunk_get_next_ncnl(tmp);
+           
+           if(next && ((next->type == CT_WORD) || (next->type == CT_TYPE)))
+           {
+               set_chunk_type(tmp, CT_OC_MSG_CLASS);
+               
+               tmp = next;
+           }
+       }
+        
       set_chunk_type(tmp, CT_OC_MSG_FUNC);
    }
 
