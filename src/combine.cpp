@@ -5071,7 +5071,15 @@ static void handle_oc_message_send(chunk_t *os)
 
    /* expect a word first thing or [...] */
    tmp = chunk_get_next_ncnl(os);
-   if ((tmp->type == CT_SQUARE_OPEN) || (tmp->type == CT_PAREN_OPEN))
+   
+   /* skip casts */
+   while (tmp->type == CT_PAREN_OPEN)
+   {
+      tmp = chunk_skip_to_match(tmp);
+      tmp = chunk_get_next_ncnl(tmp);
+   }
+   
+   if (tmp->type == CT_SQUARE_OPEN)
    {
       tmp = chunk_skip_to_match(tmp);
    }
@@ -5093,6 +5101,12 @@ static void handle_oc_message_send(chunk_t *os)
       else
       {
          set_chunk_type(tmp, CT_OC_MSG_CLASS);
+          
+         if (tt->type == CT_SQUARE_OPEN)
+         {
+            /* array access */
+            tmp = chunk_skip_to_match(tt);
+         }
       }
    }
 
