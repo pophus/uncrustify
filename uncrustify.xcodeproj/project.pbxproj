@@ -858,7 +858,7 @@
 		6553681B107EB7FA00E08A01 /* chunk_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chunk_list.h; sourceTree = "<group>"; };
 		6553681C107EB7FA00E08A01 /* ChunkStack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChunkStack.cpp; sourceTree = "<group>"; };
 		6553681D107EB7FA00E08A01 /* ChunkStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChunkStack.h; sourceTree = "<group>"; };
-		6553681E107EB7FA00E08A01 /* combine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = combine.cpp; sourceTree = "<group>"; };
+		6553681E107EB7FA00E08A01 /* combine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 3; lastKnownFileType = sourcecode.cpp.cpp; path = combine.cpp; sourceTree = "<group>"; tabWidth = 3; };
 		6553681F107EB7FA00E08A01 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		65536820107EB7FA00E08A01 /* config.h.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = config.h.in; sourceTree = "<group>"; };
 		65536822107EB7FA00E08A01 /* defines.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = defines.cpp; sourceTree = "<group>"; };
