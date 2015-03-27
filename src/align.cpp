@@ -2053,7 +2053,14 @@ static void align_oc_msg_colon(chunk_t *so)
        (len_diff > 0) &&
        ((longest->column - len_diff) > (longest->brace_level * indent_size)))
    {
-      longest->column -= len_diff;
+       chunk_t *pc = longest;
+       
+       /* Shift the message name and everything following it on the line */
+       while (pc && pc->type != CT_NEWLINE)
+       {
+           pc->column -= len_diff;
+           pc = pc->next;
+       }
    }
    else if (longest && (len > 0))
    {
