@@ -677,6 +677,29 @@ void tokenize_cleanup(void)
          }
       }
 
+      /* Detect Objective C @synchronized
+       */
+      if ((pc->type == CT_OC_SYNC) && (next->type == CT_PAREN_OPEN))
+      {
+         set_chunk_parent(next, pc->type);
+         
+         tmp = chunk_get_next(next);
+         if (tmp != NULL)
+         {
+            set_chunk_parent(tmp, pc->type);
+            
+            while ((tmp = chunk_get_next_ncnl(tmp)) != NULL)
+            {
+               if (tmp->type == CT_PAREN_CLOSE)
+               {
+                  set_chunk_parent(tmp, CT_OC_SEL);
+                  break;
+               }
+               set_chunk_parent(tmp, pc->type);
+            }
+         }
+      }
+      
       /* Handle special preprocessor junk */
       if (pc->type == CT_PREPROC)
       {

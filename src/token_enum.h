@@ -237,6 +237,7 @@ typedef enum
    CT_OC_DICT_COLON,    /* ObjC: colon in dictionary constant: "KEY: VALUE" */
    CT_OC_SEL,           /* ObjC: @selector */
    CT_OC_SEL_NAME,      /* ObjC: selector name */
+   CT_OC_SYNC,          /* ObjC: @synchronized statement */
    CT_OC_BLOCK,         /* ObjC: block parent type. */
    CT_OC_BLOCK_ARG,     /* ObjC: block arguments parent type. */
    CT_OC_BLOCK_TYPE,    /* ObjC: block declaration parent type, e.g. mainly the '(^block_t)' in 'void (^block_t)(int arg);' */

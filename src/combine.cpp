@@ -853,6 +853,7 @@ void do_symbol_check(chunk_t *prev, chunk_t *pc, chunk_t *next)
            (next->type == CT_ENUM) ||
            (next->type == CT_UNION)) &&
           (prev->type != CT_SIZEOF) &&
+          (prev->type != CT_OC_SYNC) &&
           (prev->parent_type != CT_OPERATOR) &&
           ((pc->flags & PCF_IN_TYPEDEF) == 0))
       {

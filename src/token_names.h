@@ -203,6 +203,7 @@ const char *token_names[] =
    "OC_DICT_COLON",
    "OC_SEL",
    "OC_SEL_NAME",
+   "OC_SYNC",
    "OC_BLOCK",
    "OC_BLOCK_ARG",
    "OC_BLOCK_TYPE",

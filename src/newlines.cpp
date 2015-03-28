@@ -1570,7 +1570,7 @@ void newline_iarf(chunk_t *pc, argval_t av)
    LOG_FUNC_ENTRY();
    log_func_stack(LNEWLINE, "CallStack:");
 
-   newline_iarf_pair(pc, chunk_get_next_nnl(pc), av);
+   newline_iarf_pair(pc, chunk_get_next_ncnl(pc), av);
 }
 
 
@@ -2403,6 +2403,13 @@ void newlines_cleanup_braces(bool first)
              * the if/while/for/switch close paren and the open brace, but
              * that is currently handled elsewhere.
              */
+         }
+      }
+      else if (pc->type == CT_PAREN_CLOSE)
+      {
+         if(pc->parent_type == CT_OC_SYNC)
+         {
+            newline_iarf(pc, AV_REMOVE);
          }
       }
       else if (pc->type == CT_RETURN)

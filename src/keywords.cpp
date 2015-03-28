@@ -39,6 +39,7 @@ static const chunk_tag_t keywords[] =
    { "@property",        CT_OC_PROPERTY,  LANG_OC | LANG_CPP | LANG_C                                                 },
    { "@protocol",        CT_OC_PROTOCOL,  LANG_OC | LANG_CPP | LANG_C                                                 },
    { "@selector",        CT_OC_SEL,       LANG_OC | LANG_CPP | LANG_C                                                 },
+   { "@synchronized",    CT_OC_SYNC,      LANG_OC | LANG_CPP | LANG_C                                                 },
    { "@synthesize",      CT_OC_DYNAMIC,   LANG_OC | LANG_CPP | LANG_C                                                 },
    { "@throw",           CT_THROW,        LANG_OC                                                                     },
    { "@try",             CT_TRY,          LANG_OC | LANG_CPP | LANG_C                                                 },
