@@ -374,6 +374,11 @@ chunk_t *newline_add_between(chunk_t *start, chunk_t *end)
    /* Scan for a line break */
    for (pc = start; pc != end; pc = chunk_get_next(pc))
    {
+      if(pc == NULL)
+      {
+         break;
+      }
+      
       if (chunk_is_newline(pc))
       {
          return(pc);
