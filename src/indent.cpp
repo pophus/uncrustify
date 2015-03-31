@@ -1679,7 +1679,7 @@ void indent_text(void)
             if (tmp && ((tmp->flags & PCF_VAR_DEF) != 0) &&
                 ((tmp->type == CT_WORD) || (tmp->type == CT_FUNC_CTOR_VAR)))
             {
-               do_vardefcol = true;
+               do_vardefcol = false;
             }
          }
 
