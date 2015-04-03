@@ -934,6 +934,7 @@ void indent_text(void)
          /* any '{' that is inside of a '(' overrides the '(' indent */
          if (!cpd.settings[UO_indent_paren_open_brace].b &&
              chunk_is_paren_open(frm.pse[frm.pse_tos - 1].pc) &&
+             frm.pse[frm.pse_tos].pc->parent_type != CT_OC_BLOCK_EXPR &&
              chunk_is_newline(chunk_get_next_nc(pc)))
          {
             /* FIXME: I don't know how much of this is necessary, but it seems to work */
@@ -1002,7 +1003,7 @@ void indent_text(void)
                   }
                   else
                   {
-                     frm.pse[frm.pse_tos].indent = 1 + ((pc->brace_level + 1) * indent_size);
+                     frm.pse[frm.pse_tos].indent = 1 + (((pc->level > pc->brace_level ? pc->level : pc->brace_level) + 1) * indent_size);
                      indent_column_set(frm.pse[frm.pse_tos].indent - indent_size);
                   }
                }
